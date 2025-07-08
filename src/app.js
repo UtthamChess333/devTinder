@@ -14,17 +14,27 @@
 const express = require("express");
 const app = express();
 
-// Specific route first
-app.use("/hello", (req, res) => {
-  res.send("Hello hello hello");
+app.use("/user", (req, res) => {
+  res.send("HAHHAHHAHHAHHAHAHHAHA");
 });
 
-// General route after
-app.use("/", (req, res) => {
-  res.send("Hello from Server");
+app.get("/user", (req, res) => {
+  res.send({ firstName: "Patti", lastName: "Uttham Naresh" });
+});
+
+app.post("/user", (req, res) => {
+  // Saving data to DB
+  res.send("Data sucessfully saved to the database");
+});
+
+app.delete("/user", (req, res) => {
+  res.send("Deleted sucessfully!");
+});
+
+app.use("/test", (req, res) => {
+  res.send("Hello from the server");
 });
 
 app.listen(3000, () => {
   console.log("Server Successfully started on port number: 3000");
 });
-
