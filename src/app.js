@@ -1,27 +1,30 @@
-const express = require("express");
+// const express = require("express");
 
+// const app = express();
+
+// app.use("/user", (req, res) => {
+//   res.send("Route Handler 1");
+//   console.log("Sending route handler response");
+// });
+
+// app.listen(7777, () => {
+//   console.log("Server sucessfully started!!");
+// });
+
+const express = require("express");
 const app = express();
 
-app.get("/user", (req, res) => {
-  res.send({
-    firstName: "Uttham",
-    lastName: "Naresh",
-  });
+// Specific route first
+app.use("/hello", (req, res) => {
+  res.send("Hello hello hello");
 });
 
-app.delete("/user", (req, res) => {
-  res.send("Deleted Sucessfully");
+// General route after
+app.use("/", (req, res) => {
+  res.send("Hello from Server");
 });
 
-app.post("/user", (req, res) => {
-  console.log("Saving data to database");
-  res.send("Data Sucessfully saved in the database");
+app.listen(3000, () => {
+  console.log("Server Successfully started on port number: 3000");
 });
 
-app.use("/test", (req, res) => {
-  res.send("Hello from the server");
-});
-
-app.listen(7777, () => {
-  console.log("Server sucessfully started!!");
-});
