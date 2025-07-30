@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 
 const jwt = require("jsonwebtoken");
 
-
 authRouter.use(express.json());
 
 authRouter.post("/signup", async (req, res) => {
@@ -53,6 +52,13 @@ authRouter.post("/login", async (req, res) => {
   } catch (err) {
     res.status(400).send("ERROR: " + err.message);
   }
+});
+
+authRouter.post("/logout", async (req, res) => {
+  res.cookie("token", null, {
+    expires: new Date(Date.now()),
+  });
+  res.send("Logout Sucessful!!!");
 });
 
 module.exports = authRouter;
